@@ -1,3 +1,3 @@
 INSTALL DEPENDENCIES
 
-npm install msql2 express multer cors body-parser
+<pre>npm install msql2 express multer cors body-parser</pre>
