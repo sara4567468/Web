@@ -1,3 +1,4 @@
+# Web
 install dependences
-<pre>npm install express body-parser mysql cors</pre>
-<pre>npm install -g http-server</pre>
+npm install express body-parser mysql cors
+npm install -g http-server
