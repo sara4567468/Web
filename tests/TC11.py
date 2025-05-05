@@ -1,0 +1,40 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+chrome_service = Service(executable_path="/usr/bin/chromedriver")
+driver = webdriver.Chrome(service=chrome_service)
+
+
+driver.get("http://127.0.0.1:5500")
+driver.maximize_window()
+time.sleep(2)
+driver.find_element(By.ID, "user").send_keys('1019986037')
+driver.find_element(By.ID, "passwd").send_keys("gcc")
+driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
+time.sleep(2)
+mensaje_elementos = driver.find_elements(By.ID, "feedbackText")
+if mensaje_elementos:
+    mensaje = mensaje_elementos[0].text
+    print("Error detectado, mensaje recibido:", mensaje)
+else:
+    print("login exitoso")
+driver.find_element(By.CSS_SELECTOR,"button").click()
+campo_nombre_grupo=driver.find_element(By.ID, "nombre")
+driver.find_element(By.ID, "nombre").send_keys()
+driver.find_element(By.CSS_SELECTOR,"button").click()
+time.sleep(3)
+
+mensaje_validacion = driver.execute_script(
+    'return arguments[0].validationMessage;',
+    campo_nombre_grupo
+)
+
+if mensaje_validacion:
+    print("Mensaje de validación del navegador:", mensaje_validacion)
+else:
+    print("No se encontró un mensaje de validación nativo.")
+
+time.sleep(2)
+driver.quit()
